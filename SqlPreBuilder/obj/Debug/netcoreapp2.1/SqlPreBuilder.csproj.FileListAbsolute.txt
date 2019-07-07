@@ -1,0 +1,9 @@
+C:\code\DotNet\SqlBuilder\SqlPreBuilder\bin\Debug\netcoreapp2.1\SqlPreBuilder.deps.json
+C:\code\DotNet\SqlBuilder\SqlPreBuilder\bin\Debug\netcoreapp2.1\SqlPreBuilder.dll
+C:\code\DotNet\SqlBuilder\SqlPreBuilder\bin\Debug\netcoreapp2.1\SqlPreBuilder.pdb
+C:\code\DotNet\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.csproj.CoreCompileInputs.cache
+C:\code\DotNet\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.AssemblyInfoInputs.cache
+C:\code\DotNet\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.AssemblyInfo.cs
+C:\code\DotNet\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.dll
+C:\code\DotNet\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.pdb
+C:\code\DotNet\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.csprojAssemblyReference.cache

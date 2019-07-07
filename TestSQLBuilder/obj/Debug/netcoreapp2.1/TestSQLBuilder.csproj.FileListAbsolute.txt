@@ -1,0 +1,14 @@
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.csprojAssemblyReference.cache
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.csproj.CoreCompileInputs.cache
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.AssemblyInfoInputs.cache
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.AssemblyInfo.cs
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.deps.json
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.runtimeconfig.json
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.runtimeconfig.dev.json
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.dll
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.pdb
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\SqlPreBuilder.dll
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\SqlPreBuilder.pdb
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.csproj.CopyComplete
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.dll
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.pdb
