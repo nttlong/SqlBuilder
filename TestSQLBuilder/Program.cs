@@ -1,29 +1,41 @@
-﻿using SqlPreBuilder;
+﻿
 using System;
-
+using XSQL;
+using System.Linq;
 namespace TestSQLBuilder
 {
     class Program
     {
         static void Main(string[] args)
         {
-           
-            var ret1 = SqlPreBuilder.Factory.Create<clsTest>("dbo", "Test");
-            var ret2 = SqlPreBuilder.Factory.Create<clsTest>("dbo", "Test");
-            ret1.AliasName = "qr1";
-            ret2.AliasName = "qr2";
-            var ret3 = SqlPreBuilder.SQL.Combine(ret1, ret2, (p, q) => new {
-                p,q
+            Func<string> f1 = () =>
+             {
+                 return "Code";
+ 
+             };
+            var sql = BaseSql.Create("x", "y", p => new {
+                Code=BaseSql.Field<int>(f1()),
+                X=12
             });
-            Console.WriteLine(SqlPreBuilder.SQL.GetSql(ret1, "[]"));
-            ret1 = SqlPreBuilder.SQL.Select(ret1,p => new { Code = p.Code + "/" + "123" });
-            Console.WriteLine(SqlPreBuilder.SQL.GetSql(ret1, "[]"));
-            Console.WriteLine(SqlPreBuilder.SQL.GetSql(ret3, "[]"));
-            //string sql = SqlPreBuilder.SQL.GetSql(ret3, "[]");
-            //foreach(var x in ret.Fields)
-            //{
-            //    Console.WriteLine(string.Format("{0}.{1}.{2}", x.Schema, x.Table, x.Name));
-            //}
+            var sql2 = BaseSql.Create("a", "b", p => new {
+                Code6 = BaseSql.Field<int>(f1()),
+                Xi = 12
+            });
+            var t = from m in sql
+                    from x in sql2
+                   // on m.Code equals x.Code6
+                    select new {v=m.Code+"/"+x.Code6,  m,x };
+
+            var sql1 = from x in t
+                       from a in sql
+                       select new
+                       {
+                           vv=x.v+"b"
+                       };
+
+            //var sql2 = sql1.Where(p => p.fx == 123);
+            //var sql3=sql2.Select(p=>new {p.X }).Where(v=>v.X==12);
+            // var x = sql3.ToSQLString("[]");
             Console.ReadKey();
         }
     }

@@ -7,3 +7,12 @@ C:\code\DotNet\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.As
 C:\code\DotNet\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.dll
 C:\code\DotNet\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.pdb
 C:\code\DotNet\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.csprojAssemblyReference.cache
+C:\github\vn-argo-app-server\SqlBuilder\SqlPreBuilder\bin\Debug\netcoreapp2.1\SqlPreBuilder.deps.json
+C:\github\vn-argo-app-server\SqlBuilder\SqlPreBuilder\bin\Debug\netcoreapp2.1\SqlPreBuilder.dll
+C:\github\vn-argo-app-server\SqlBuilder\SqlPreBuilder\bin\Debug\netcoreapp2.1\SqlPreBuilder.pdb
+C:\github\vn-argo-app-server\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.csprojAssemblyReference.cache
+C:\github\vn-argo-app-server\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.csproj.CoreCompileInputs.cache
+C:\github\vn-argo-app-server\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.AssemblyInfoInputs.cache
+C:\github\vn-argo-app-server\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.AssemblyInfo.cs
+C:\github\vn-argo-app-server\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.dll
+C:\github\vn-argo-app-server\SqlBuilder\SqlPreBuilder\obj\Debug\netcoreapp2.1\SqlPreBuilder.pdb

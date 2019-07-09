@@ -8,15 +8,15 @@
     ".NETCoreApp,Version=v2.1": {
       "TestSQLBuilder/1.0.0": {
         "dependencies": {
-          "SqlPreBuilder": "1.0.0"
+          "XSQL": "1.0.0"
         },
         "runtime": {
           "TestSQLBuilder.dll": {}
         }
       },
-      "SqlPreBuilder/1.0.0": {
+      "XSQL/1.0.0": {
         "runtime": {
-          "SqlPreBuilder.dll": {}
+          "XSQL.dll": {}
         }
       }
     }
@@ -27,7 +27,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "SqlPreBuilder/1.0.0": {
+    "XSQL/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -12,3 +12,17 @@ C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\SqlPreBuilder.p
 C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.csproj.CopyComplete
 C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.dll
 C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.pdb
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.deps.json
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.runtimeconfig.json
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.runtimeconfig.dev.json
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.dll
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.pdb
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.csprojAssemblyReference.cache
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.csproj.CoreCompileInputs.cache
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.AssemblyInfoInputs.cache
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.AssemblyInfo.cs
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.csproj.CopyComplete
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.dll
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.pdb
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\XSQL.dll
+C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\XSQL.pdb

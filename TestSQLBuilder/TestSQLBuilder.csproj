@@ -6,11 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SqlPreBuilder\SqlPreBuilder.csproj" />
+    <Compile Remove="SqlPreBuilder\**" />
+    <EmbeddedResource Remove="SqlPreBuilder\**" />
+    <None Remove="SqlPreBuilder\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SqlPreBuilder\" />
+    <ProjectReference Include="..\XSQL\XSQL.csproj" />
   </ItemGroup>
 
 </Project>

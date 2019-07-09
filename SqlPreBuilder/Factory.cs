@@ -52,7 +52,7 @@ namespace SqlPreBuilder
             return ret;
         }
 
-        public static T Field<T>(T FieldName)
+        public static T Field<T>(string FieldName)
         {
             throw new NotImplementedException();
         }

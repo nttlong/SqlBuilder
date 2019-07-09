@@ -208,14 +208,14 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "SqlPreBuilder/1.0.0": {
+      "XSQL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "compile": {
-          "bin/placeholder/SqlPreBuilder.dll": {}
+          "bin/placeholder/XSQL.dll": {}
         },
         "runtime": {
-          "bin/placeholder/SqlPreBuilder.dll": {}
+          "bin/placeholder/XSQL.dll": {}
         }
       }
     }
@@ -691,36 +691,36 @@
         "netstandard.library.nuspec"
       ]
     },
-    "SqlPreBuilder/1.0.0": {
+    "XSQL/1.0.0": {
       "type": "project",
-      "path": "../SqlPreBuilder/SqlPreBuilder.csproj",
-      "msbuildProject": "../SqlPreBuilder/SqlPreBuilder.csproj"
+      "path": "../XSQL/XSQL.csproj",
+      "msbuildProject": "../XSQL/XSQL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.NETCore.App >= 2.1.0",
-      "SqlPreBuilder >= 1.0.0"
+      "XSQL >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Win10\\.nuget\\packages\\": {},
+    "C:\\Users\\nttlong\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\code\\DotNet\\SqlBuilder\\TestSQLBuilder\\TestSQLBuilder.csproj",
+      "projectUniqueName": "C:\\github\\vn-argo-app-server\\SqlBuilder\\TestSQLBuilder\\TestSQLBuilder.csproj",
       "projectName": "TestSQLBuilder",
-      "projectPath": "C:\\code\\DotNet\\SqlBuilder\\TestSQLBuilder\\TestSQLBuilder.csproj",
-      "packagesPath": "C:\\Users\\Win10\\.nuget\\packages\\",
-      "outputPath": "C:\\code\\DotNet\\SqlBuilder\\TestSQLBuilder\\obj\\",
+      "projectPath": "C:\\github\\vn-argo-app-server\\SqlBuilder\\TestSQLBuilder\\TestSQLBuilder.csproj",
+      "packagesPath": "C:\\Users\\nttlong\\.nuget\\packages\\",
+      "outputPath": "C:\\github\\vn-argo-app-server\\SqlBuilder\\TestSQLBuilder\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Win10\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nttlong\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -733,8 +733,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\code\\DotNet\\SqlBuilder\\SqlPreBuilder\\SqlPreBuilder.csproj": {
-              "projectPath": "C:\\code\\DotNet\\SqlBuilder\\SqlPreBuilder\\SqlPreBuilder.csproj"
+            "C:\\github\\vn-argo-app-server\\SqlBuilder\\XSQL\\XSQL.csproj": {
+              "projectPath": "C:\\github\\vn-argo-app-server\\SqlBuilder\\XSQL\\XSQL.csproj"
             }
           }
         }
@@ -749,6 +749,7 @@
       "netcoreapp2.1": {
         "dependencies": {
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
