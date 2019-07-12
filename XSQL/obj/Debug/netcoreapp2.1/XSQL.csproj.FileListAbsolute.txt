@@ -1,0 +1,9 @@
+C:\github\vn-argo-app-server\SqlBuilder\XSQL\bin\Debug\netcoreapp2.1\XSQL.deps.json
+C:\github\vn-argo-app-server\SqlBuilder\XSQL\bin\Debug\netcoreapp2.1\XSQL.dll
+C:\github\vn-argo-app-server\SqlBuilder\XSQL\bin\Debug\netcoreapp2.1\XSQL.pdb
+C:\github\vn-argo-app-server\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.csproj.CoreCompileInputs.cache
+C:\github\vn-argo-app-server\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.AssemblyInfoInputs.cache
+C:\github\vn-argo-app-server\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.AssemblyInfo.cs
+C:\github\vn-argo-app-server\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.dll
+C:\github\vn-argo-app-server\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.pdb
+C:\github\vn-argo-app-server\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.csprojAssemblyReference.cache
