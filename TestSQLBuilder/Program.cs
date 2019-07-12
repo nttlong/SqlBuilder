@@ -8,8 +8,8 @@ namespace TestSQLBuilder
 {
     class Program
     {
-        
 
+        
         static void Main(string[] args)
         {
             //var fx = ExprParse.Parse("(fx(sum(1,1)))");
@@ -23,6 +23,7 @@ namespace TestSQLBuilder
             //    Code=BaseSql.Field<int>(f1()),
             //    X=12
             //});
+            
             var sql = BaseSql.Create<MyClass>(null, "DM_Objects");
             //var sql2 = from v in sql
             //          select new Class3
@@ -52,18 +53,22 @@ namespace TestSQLBuilder
             var qr2 = from v in sql select v;
                       
             var sql1 = from x in qr1
-                       from v in qr2.Where(p=>p.ObjectId!=x.ObjectId+"123").DefaultIfEmpty()
+                       from v in qr2.Where(p=>p.ObjectId!=SqlFn.Concat(x.ObjectId,"123")).DefaultIfEmpty()
                        
-                       select new
+                       select new Test001
                        {
-                           x,v
+                          
+                           Code=SqlFn.Concat("123","A"),
+                           Test=SqlFn.Case(x.ObjectId=="A","A","B")
                        };
-            var testSQL = from x in sql
-                          from y in sql1.Where(y=>y.x.ObjectId==x.ObjectId+"123").DefaultIfEmpty()
-                          select new  {
-                              x=x
-                              
-                          };
+
+            //var testSQL = from x in sql
+            //              from y in sql1.Where(y=>y.Code==x.ObjectId+"123").DefaultIfEmpty()
+            //              select new  {
+            //                  x=x
+
+            //              };
+            var cmd = XCommand.GetCommand(PgCompiler.Provider, sql1);
                        //join m in sql
                        //on x.ObjectId equals m.ObjectId
                        //select new
