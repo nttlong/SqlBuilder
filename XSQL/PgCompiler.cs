@@ -25,7 +25,15 @@ namespace XSQL
         {
             if (funcExpr.Name == "Concat")
             {
-                return funcExpr.Name + "(" + string.Join(",", funcExpr.Arguments.Select(p => p.ToSQLString(this.GetBrackets(), this.GetParamPrefix(), Params, this)));
+                var ret= funcExpr.Name + "(" + string.Join(",", funcExpr.Arguments.Select(p => p.ToSQLString(this.GetBrackets(), this.GetParamPrefix(), Params, this)))+")";
+                if (funcExpr.AliasName != null)
+                {
+                    return ret + " " + string.Format("{0}.{{0}}.{1}", this.GetBrackets()[0], this.GetBrackets()[1]);
+                }
+                else
+                {
+                    return ret;
+                }
             }
             if (funcExpr.Name == "Case")
             {
@@ -38,12 +46,20 @@ namespace XSQL
                 }
                 if (funcExpr.Arguments.Count % 2 == 0)
                 {
-                    return "Case " + string.Join("", WhenClause) + " Else Null";
+                    var ret= "Case " + string.Join("", WhenClause) + " Else Null End ";
+                    if (funcExpr.AliasName != null)
+                    {
+                        return ret + " " + string.Format("{0}.{{0}}.{1}", this.GetBrackets()[0], this.GetBrackets()[1]);
+                    }
                 }
                 else
                 {
-                    return "Case " + string.Join("", WhenClause) + 
-                            " Else "+ funcExpr.Arguments[funcExpr.Arguments.Count-1].ToSQLString(this.GetBrackets(),this.GetParamPrefix(),Params,this);
+                    var ret= "Case " + string.Join("", WhenClause) + 
+                            " Else "+ funcExpr.Arguments[funcExpr.Arguments.Count-1].ToSQLString(this.GetBrackets(),this.GetParamPrefix(),Params,this)+" End ";
+                    if (funcExpr.AliasName != null)
+                    {
+                        return ret + " " + string.Format("{0}.{{0}}.{1}", this.GetBrackets()[0], this.GetBrackets()[1]);
+                    }
                 }
                 
             }

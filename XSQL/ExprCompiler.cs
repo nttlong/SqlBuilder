@@ -62,8 +62,10 @@ namespace XSQL
                         Callee = new FuncExpr
                         {
                             Name = expr.Method.Name,
-                            Arguments = tmpArgs
+                            Arguments = tmpArgs,
+                            AliasName = (mB != null) ? mB.Name:null
                         }
+                        
                     };
                 }
                 else
@@ -78,8 +80,10 @@ namespace XSQL
                         Callee = new FuncExpr
                         {
                             Name = expr.Method.Name,
-                            Arguments = tmpArgs
-                        }
+                            Arguments = tmpArgs,
+                            AliasName = (mB != null) ? mB.Name : null
+                        },
+                        AliasName = mB.Name
                     };
                 }
                 

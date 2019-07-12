@@ -8,6 +8,7 @@ namespace XSQL
     {
         public string Name { get; internal set; }
         public List<TreeExpr> Arguments { get; set; }
+        public string AliasName { get; internal set; }
 
         public string ToSQLString(string Quotes, string paramPrefix, List<XSqlCommandParam> Params,ISqlCompiler compiler)
         {
