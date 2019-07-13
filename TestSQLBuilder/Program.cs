@@ -13,12 +13,11 @@ namespace TestSQLBuilder
         static void Main(string[] args)
         {
             var qr = new XSQL.Sql<GnolMembership.Models.SysUsers>();
-            qr = qr.Where(p => p.Username == "");
-            var qrGroup = qr.GroupBy(p => p.Username).Select(p=>new TestUser { TotalUser = SqlFn.Count(p.First().Username) });
-            var vx = ((XSQL.BaseSql)qrGroup).SelectedFields[0].ToString();
-            var cmp = XCommand.GetCommand(XSQL.PgCompiler.Provider, qrGroup);
-            var FX = qrGroup.Select(p => new {p.TotalUser });
-            Console.WriteLine(cmp.CommandText);
+            var sql1 = from x in qr
+                       where x.Username == "admin"
+                       group x by x.Username into g
+                       select SqlFn.Count<int>(g.First().Username);
+           Console.WriteLine(sql1);
             //var fx = ExprParse.Parse("(fx(sum(1,1)))");
             //Func<string> f1 = () =>
             // {
@@ -59,15 +58,15 @@ namespace TestSQLBuilder
 
             var qr2 = from v in sql select v;
                       
-            var sql1 = from x in qr1
-                       from v in qr2.Where(p=>p.ObjectId!=SqlFn.Concat(x.ObjectId,"123")).DefaultIfEmpty()
+            //var sql1 = from x in qr1
+            //           from v in qr2.Where(p=>p.ObjectId!=SqlFn.Concat(x.ObjectId,"123")).DefaultIfEmpty()
                        
-                       select new Test001
-                       {
+            //           select new Test001
+            //           {
                           
-                           Code=SqlFn.Concat("123","A"),
-                           Test=SqlFn.Case(x.ObjectId=="A","A","B")
-                       };
+            //               Code=SqlFn.Concat("123","A"),
+            //               Test=SqlFn.Case(x.ObjectId=="A","A","B")
+            //           };
 
             //var testSQL = from x in sql
             //              from y in sql1.Where(y=>y.Code==x.ObjectId+"123").DefaultIfEmpty()

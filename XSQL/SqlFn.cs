@@ -18,7 +18,7 @@ namespace XSQL
             throw new NotImplementedException();
         }
 
-        public static object Count(string username)
+        public static T Count<T>(object FieldName)
         {
             throw new NotImplementedException();
         }

@@ -612,25 +612,26 @@ namespace XSQL
             return ret;
         }
 
-        public static IQueryable<T> DoSelectByMethodCallExpression<T>(BaseSql qr, MethodCallExpression expr)
+        public static IQueryable<T> DoSelectByMethodCallExpression<T>(BaseSql sql, MethodCallExpression expr)
         {
+            var ret = BaseSql.Clone<T>(sql);
             if (expr.Method.DeclaringType == typeof(SqlFn))
             {
                 if (expr.Arguments.Count == 1)
                 {
-                    if (qr.SelectedFields == null)
+                    if (ret.SelectedFields == null)
                     {
-                        qr.SelectedFields = new List<TreeExpr>();
+                        ret.SelectedFields = new List<TreeExpr>();
                     }
-                    qr.SelectedFields.Add(new TreeExpr
+                    ret.SelectedFields.Add(new TreeExpr
                     {
                         Callee=new FuncExpr
                         {
                             Name=expr.Method.Name,
-                            Arguments=expr.Arguments.Select(p=>ExprCompiler.Compile(qr,p,null)).ToList()
+                            Arguments=expr.Arguments.Select(p=>ExprCompiler.Compile(ret,p,null)).ToList()
                         }
                     });
-                    return qr as IQueryable<T>;
+                    return ret as IQueryable<T>;
                 }
             }
             throw new NotImplementedException();

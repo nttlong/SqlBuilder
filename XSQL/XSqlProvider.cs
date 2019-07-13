@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -30,6 +31,11 @@ namespace XSQL
                 if (cx.Method.Name == "Select")
                 {
                     var ret= ExprCompiler.DoSelectByMethodCallExpression<TElement>(cx) as BaseSql;
+                    if (ret.MapFields == null)
+                    {
+                        ret.MapFields = new List<MapFieldInfo>();
+                    }
+                    
                     var mbxs = ExprCompiler.GetAllMemberExpression(Expr);
                     foreach(var mbx in mbxs)
                     {
