@@ -18,7 +18,7 @@ namespace XSQL
         {
             if (Params == null)
             {
-                var ret = string.Format("<{0}>({1})", this.Type.FullName, Val);
+                var ret = string.Format("<{0}>('{1}')", this.Type.FullName, Val);
                 if (this.AliasName != null)
                 {
                     ret += " " + string.Format(string.Format("{0}{{0}}{1}", Quotes[0], Quotes[1]), this.AliasName);

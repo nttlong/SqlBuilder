@@ -9,7 +9,7 @@ namespace XSQL
 {
     public class ExprCompiler
     {
-        private static string currentParamName;
+        public static string currentParamName;
 
         public static TreeExpr Compile(BaseSql sql, Expression Expr, MemberInfo MB)
         {
@@ -45,7 +45,7 @@ namespace XSQL
             throw new NotImplementedException();
         }
 
-        private static TreeExpr CompileMethodCallExpression(BaseSql sql, MethodCallExpression expr, MemberInfo mB)
+        public static TreeExpr CompileMethodCallExpression(BaseSql sql, MethodCallExpression expr, MemberInfo mB)
         {
             if (expr.Method.DeclaringType == typeof(SqlFn))
             {
@@ -91,7 +91,80 @@ namespace XSQL
             throw new NotImplementedException();
         }
 
-        private static TreeExpr CompileParaExpr(BaseSql sql, ParameterExpression expr)
+        internal static Sql<T> DoGroupBy<T>(MethodCallExpression expr)
+        {
+            
+            var sql = Expression.Lambda(expr.Arguments[0]).Compile().DynamicInvoke() as BaseSql;
+            var ret = BaseSql.Clone<T>(sql);
+            ret.MapFields.AddRange(sql.MapFields.Select(p => p.Clone()));
+            var ExprGroupBy = expr.Arguments[1];
+            ret.GroupByFields = ExprCompiler.GetSelectedFieldsFromExpression(ret, ExprGroupBy);
+            ret.IsSubQuery = true;
+            var mbxs = ExprCompiler.GetAllMemberExpression(expr);
+            typeof(T).GetProperties().ToList().ForEach(p =>
+            {
+                ret.MapFields.Add(new MapFieldInfo
+                {
+                    Member=p,
+                    ParamExpr=Expression.Parameter(p.PropertyType,"p"),
+                    Name=p.Name
+                });
+            });
+            return ret;
+        }
+
+        public static List<TreeExpr> GetSelectedFieldsFromExpression<T>(Sql<T> sql, Expression expr)
+        {
+            if(expr is NewExpression)
+            {
+                return GetSelectedFieldsFromNewExpression(sql, (NewExpression)expr);
+            }
+            else if(expr is MemberInitExpression)
+            {
+                return GetSelectedFieldsFromMemberInitExpression(sql, (MemberInitExpression)expr);
+            }
+            else if(expr is MemberExpression)
+            {
+                return GetSelectedFieldsFromMemberExpression(sql, (MemberExpression)expr);
+            }
+            else if(expr is UnaryExpression)
+            {
+                return GetSelectedFieldsFromExpression(sql, ((UnaryExpression)expr).Operand);
+            }
+            else if(expr is LambdaExpression)
+            {
+                return GetSelectedFieldsFromLambdaExpression(sql, ((LambdaExpression)expr));
+            }
+            throw new NotImplementedException();
+        }
+
+        public static List<TreeExpr> GetSelectedFieldsFromLambdaExpression<T>(Sql<T> sql, LambdaExpression expr)
+        {
+            return GetSelectedFieldsFromExpression(sql, expr.Body);
+            
+            throw new NotImplementedException();
+        }
+
+        public static List<TreeExpr> GetSelectedFieldsFromMemberExpression<T>(Sql<T> sql, MemberExpression expr)
+        {
+            var mp = sql.MapFields.FirstOrDefault(p => p.Member == expr.Member);
+            var ret = new List<TreeExpr>();
+            ret.Add(new TreeExpr
+            {
+                Field = new FieldExpr
+                {
+                    AliasName = (mp != null) ? mp.AliasName : null,
+                    Name = expr.Member.Name,
+                    Schema = (mp != null) ? mp.Schema : sql.schema,
+                    TableName=(mp!=null)?mp.TableName:sql.table
+                    
+                }
+            }) ;
+            return ret;
+            
+        }
+
+        public static TreeExpr CompileParaExpr(BaseSql sql, ParameterExpression expr)
         {
             if (sql.source != null)
             {
@@ -346,17 +419,37 @@ namespace XSQL
                     ret.AddRange(GetAllMemberExpression(p));
                 });
             }
+            else if(expr is MemberInitExpression)
+            {
+                
+                var nx = expr as MemberInitExpression;
+                foreach(var x in nx.Bindings)
+                {
+                    if(x is MemberAssignment)
+                    {
+                        
+                        ret.AddRange(GetAllMemberExpression(((MemberAssignment)x).Expression));
+
+                    }
+                    else
+                    {
+                        throw new NotImplementedException();
+                    }
+                }
+               
+            }
             else
             {
                 throw new NotImplementedException();
             }
+            ret = ret.Distinct().ToList();
             return ret;
         }
-        private static Sql<T> DoInnerJoinByLambdaExpression<T>(BaseSql qr1, BaseSql qr2, LambdaExpression conditional, LambdaExpression selector)
+        public static Sql<T> DoInnerJoinByLambdaExpression<T>(BaseSql qr1, BaseSql qr2, LambdaExpression conditional, LambdaExpression selector)
         {
             var x = GetAllParamsExpr(conditional);
             //var y = GetAllParamsExpr(selector);
-            var ret = new Sql<T>();
+            var ret = new Sql<T>(true);
             ret.AliasCount++;
             var leftAlias = "l" + ret.AliasCount + "" + qr1.AliasCount + "" + qr2.AliasCount;
             var righttAlias = "r" + ret.AliasCount + "" + qr1.AliasCount + "" + qr2.AliasCount;
@@ -477,7 +570,7 @@ namespace XSQL
             return ret;
         }
 
-        public static IQueryable<T> DoSelect<T>(MethodCallExpression cx)
+        public static IQueryable<T> DoSelectByMethodCallExpression<T>(MethodCallExpression cx)
         {
             if (cx.Arguments[0].Type.BaseType == typeof(BaseSql))
             {
@@ -487,23 +580,90 @@ namespace XSQL
                 {
                     return DoSelectByNewExpression<T>(qr, (NewExpression)selector);
                 }
-
+                else if (selector is MemberExpression)
+                {
+                    return DoSelectByMemberExpression<T>(qr, (MemberExpression)selector);
+                }
+                else if(selector is UnaryExpression)
+                {
+                    return DoSelectByExpression<T>(qr, ((UnaryExpression)selector).Operand);
+                }
+                else if(selector is MethodCallExpression)
+                {
+                    return DoSelectByMethodCallExpression<T>(qr, (MethodCallExpression)selector);
+                }
+                else if(selector is MemberInitExpression)
+                {
+                    return DoSelectByMMemberInitExpression<T>(qr, (MemberInitExpression)selector);
+                }
             }
             throw new NotImplementedException();
         }
 
-        private static IQueryable<T> DoSelectByNewExpression<T>(BaseSql qr, NewExpression selector)
+        public static IQueryable<T> DoSelectByMMemberInitExpression<T>(BaseSql qr, MemberInitExpression Expr)
+        {
+            var ret = BaseSql.Clone<T>(qr);
+            ret.SelectedFields = new List<TreeExpr>();
+            foreach(MemberAssignment mba in Expr.Bindings)
+            {
+                ret.SelectedFields.Add(ExprCompiler.Compile(ret, mba.Expression, mba.Member));
+            }
+            
+            return ret;
+        }
+
+        public static IQueryable<T> DoSelectByMethodCallExpression<T>(BaseSql qr, MethodCallExpression expr)
+        {
+            if (expr.Method.DeclaringType == typeof(SqlFn))
+            {
+                if (expr.Arguments.Count == 1)
+                {
+                    if (qr.SelectedFields == null)
+                    {
+                        qr.SelectedFields = new List<TreeExpr>();
+                    }
+                    qr.SelectedFields.Add(new TreeExpr
+                    {
+                        Callee=new FuncExpr
+                        {
+                            Name=expr.Method.Name,
+                            Arguments=expr.Arguments.Select(p=>ExprCompiler.Compile(qr,p,null)).ToList()
+                        }
+                    });
+                    return qr as IQueryable<T>;
+                }
+            }
+            throw new NotImplementedException();
+        }
+
+        public static IQueryable<T> DoSelectByExpression<T>(BaseSql qr, Expression Expr)
+        {
+            if(Expr is MemberExpression)
+            {
+                return DoSelectByMemberExpression<T>(qr,(MemberExpression)Expr);
+            }
+            throw new NotImplementedException();
+        }
+
+        public static IQueryable<T> DoSelectByMemberExpression<T>(BaseSql qr, MemberExpression selector)
+        {
+            var ret = BaseSql.Clone<T>(qr);
+            ret.SelectedFields = GetSelectedFieldsFromMemberExpression(ret, selector);
+            return ret as IQueryable<T>;
+        }
+
+        public static IQueryable<T> DoSelectByNewExpression<T>(BaseSql qr, NewExpression Expr)
         {
 
             var ret = BaseSql.Clone<T>(qr);
-            ret.SelectedFields = GetSelectedFieldsFromNewExpression(ret, selector);
+            ret.SelectedFields = Expr.Arguments.Select(p => ExprCompiler.Compile(qr, p, Expr.Members[Expr.Arguments.IndexOf(p)])).ToList();
             return ret as IQueryable<T>;
 
         }
 
 
 
-        private static IQueryable<T> CrossJoin<T>(BaseSql qr1, BaseSql qr2, LambdaExpression Expr)
+        public static IQueryable<T> CrossJoin<T>(BaseSql qr1, BaseSql qr2, LambdaExpression Expr)
         {
             var ret = new Sql<T>();
             ret.MapFields = new List<MapFieldInfo>();
@@ -776,7 +936,7 @@ namespace XSQL
             return ret;
         }
        
-        private static TreeExpr CompileConst(BaseSql sql, ConstantExpression expr, MemberInfo mB)
+        public static TreeExpr CompileConst(BaseSql sql, ConstantExpression expr, MemberInfo mB)
         {
             var val = new ValueExpr
             {
@@ -792,7 +952,7 @@ namespace XSQL
            
             return ret;
         }
-        private static ParameterExpression GetParamFfromMember(MemberExpression expr)
+        public static ParameterExpression GetParamFfromMember(MemberExpression expr)
         {
             var ret = expr.Expression;
             if (ret is ParameterExpression)
@@ -805,7 +965,7 @@ namespace XSQL
             }
             return null;
         }
-        private static TreeExpr CompileMember(BaseSql sql, MemberExpression expr, MemberInfo mB)
+        public static TreeExpr CompileMember(BaseSql sql, MemberExpression expr, MemberInfo mB)
         {
             ParameterExpression P = GetParamFfromMember(expr);
             var mb = sql.MapFields.Where(p => p.ParamExpr != null).FirstOrDefault(p => p.ParamExpr == P && p.Member == expr.Member);
@@ -840,7 +1000,7 @@ namespace XSQL
 
 
 
-        private static TreeExpr CompileBin(BaseSql sql, BinaryExpression expr, MemberInfo mb)
+        public static TreeExpr CompileBin(BaseSql sql, BinaryExpression expr, MemberInfo mb)
         {
             return new TreeExpr
             {

@@ -688,23 +688,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nttlong\\.nuget\\packages\\": {},
+    "C:\\Users\\Win10\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\github\\vn-argo-app-server\\SqlBuilder\\XSQL\\XSQL.csproj",
+      "projectUniqueName": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj",
       "projectName": "XSQL",
-      "projectPath": "C:\\github\\vn-argo-app-server\\SqlBuilder\\XSQL\\XSQL.csproj",
-      "packagesPath": "C:\\Users\\nttlong\\.nuget\\packages\\",
-      "outputPath": "C:\\github\\vn-argo-app-server\\SqlBuilder\\XSQL\\obj\\",
+      "projectPath": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj",
+      "packagesPath": "C:\\Users\\Win10\\.nuget\\packages\\",
+      "outputPath": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\nttlong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Win10\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

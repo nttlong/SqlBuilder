@@ -4,14 +4,14 @@
     "C:\\code\\DotNet\\SqlBuilder\\TestSQLBuilder\\TestSQLBuilder.csproj": {}
   },
   "projects": {
-    "C:\\code\\DotNet\\SqlBuilder\\SqlPreBuilder\\SqlPreBuilder.csproj": {
+    "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\GnolMembership.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\code\\DotNet\\SqlBuilder\\SqlPreBuilder\\SqlPreBuilder.csproj",
-        "projectName": "SqlPreBuilder",
-        "projectPath": "C:\\code\\DotNet\\SqlBuilder\\SqlPreBuilder\\SqlPreBuilder.csproj",
+        "projectUniqueName": "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\GnolMembership.csproj",
+        "projectName": "GnolMembership",
+        "projectPath": "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\GnolMembership.csproj",
         "packagesPath": "C:\\Users\\Win10\\.nuget\\packages\\",
-        "outputPath": "C:\\code\\DotNet\\SqlBuilder\\SqlPreBuilder\\obj\\",
+        "outputPath": "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -29,7 +29,11 @@
         },
         "frameworks": {
           "netcoreapp2.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj": {
+                "projectPath": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -82,8 +86,11 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "C:\\code\\DotNet\\SqlBuilder\\SqlPreBuilder\\SqlPreBuilder.csproj": {
-                "projectPath": "C:\\code\\DotNet\\SqlBuilder\\SqlPreBuilder\\SqlPreBuilder.csproj"
+              "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\GnolMembership.csproj": {
+                "projectPath": "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\GnolMembership.csproj"
+              },
+              "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj": {
+                "projectPath": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj"
               }
             }
           }
@@ -98,6 +105,58 @@
         "netcoreapp2.1": {
           "dependencies": {
             "Microsoft.NETCore.App": {
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj",
+        "projectName": "XSQL",
+        "projectPath": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj",
+        "packagesPath": "C:\\Users\\Win10\\.nuget\\packages\\",
+        "outputPath": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Win10\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true

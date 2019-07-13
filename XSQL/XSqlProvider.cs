@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace XSQL
 {
@@ -28,7 +29,36 @@ namespace XSQL
                 }
                 if (cx.Method.Name == "Select")
                 {
-                    return ExprCompiler.DoSelect<TElement>(cx);
+                    var ret= ExprCompiler.DoSelectByMethodCallExpression<TElement>(cx) as BaseSql;
+                    var mbxs = ExprCompiler.GetAllMemberExpression(Expr);
+                    foreach(var mbx in mbxs)
+                    {
+                        var mp = ret.MapFields.FirstOrDefault(p => p.ParamExpr == mbx.Expression && p.Member == mbx.Member);
+                        if (mp == null)
+                        {
+                            ret.MapFields.Add(new MapFieldInfo
+                            {
+                                Alias=ret.Alias,
+                                AliasName=mbx.Member.Name,
+                                Member=mbx.Member as PropertyInfo,
+                                ParamExpr=mbx.Expression as ParameterExpression,
+                                Name=mbx.Member.Name,
+                                Schema=ret.schema,
+                                TableName=ret.table
+                            });
+                        }
+                        
+                    }
+                    typeof(TElement).GetProperties().ToList().ForEach(p =>
+                    {
+                        ret.MapFields.Add(new MapFieldInfo
+                        {
+                            Member = p,
+                            ParamExpr = Expression.Parameter(p.PropertyType, "p"),
+                            Name = p.Name
+                        });
+                    });
+                    return ret as IQueryable<TElement>;
                 }
                 if (cx.Method.Name == "Join")
                 {
@@ -38,6 +68,10 @@ namespace XSQL
                     var rightKey = (MemberExpression)((LambdaExpression)((UnaryExpression)cx.Arguments[3]).Operand).Body;
                     var selector = cx.Arguments[4];
                     return ExprCompiler.DoInnerJoin<TElement>(qr1, qr2, leftKey, rightKey, selector);
+                }
+                if (cx.Method.Name == "GroupBy")
+                {
+                    return ExprCompiler.DoGroupBy<TElement>(cx) as IQueryable<TElement>;
                 }
             }
             

@@ -17,5 +17,10 @@ namespace XSQL
         {
             throw new NotImplementedException();
         }
+
+        public static object Count(string username)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

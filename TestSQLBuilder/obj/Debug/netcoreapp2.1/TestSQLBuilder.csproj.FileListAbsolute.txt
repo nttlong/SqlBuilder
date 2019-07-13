@@ -7,8 +7,6 @@ C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.
 C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.runtimeconfig.dev.json
 C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.dll
 C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\TestSQLBuilder.pdb
-C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\SqlPreBuilder.dll
-C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\SqlPreBuilder.pdb
 C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.csproj.CopyComplete
 C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.dll
 C:\code\DotNet\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.pdb
@@ -26,3 +24,7 @@ C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\T
 C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\obj\Debug\netcoreapp2.1\TestSQLBuilder.pdb
 C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\XSQL.dll
 C:\github\vn-argo-app-server\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\XSQL.pdb
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\XSQL.dll
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\XSQL.pdb
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\GnolMembership.dll
+C:\code\DotNet\SqlBuilder\TestSQLBuilder\bin\Debug\netcoreapp2.1\GnolMembership.pdb

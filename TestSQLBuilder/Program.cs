@@ -12,6 +12,13 @@ namespace TestSQLBuilder
         
         static void Main(string[] args)
         {
+            var qr = new XSQL.Sql<GnolMembership.Models.SysUsers>();
+            qr = qr.Where(p => p.Username == "");
+            var qrGroup = qr.GroupBy(p => p.Username).Select(p=>new TestUser { TotalUser = SqlFn.Count(p.First().Username) });
+            var vx = ((XSQL.BaseSql)qrGroup).SelectedFields[0].ToString();
+            var cmp = XCommand.GetCommand(XSQL.PgCompiler.Provider, qrGroup);
+            var FX = qrGroup.Select(p => new {p.TotalUser });
+            Console.WriteLine(cmp.CommandText);
             //var fx = ExprParse.Parse("(fx(sum(1,1)))");
             //Func<string> f1 = () =>
             // {

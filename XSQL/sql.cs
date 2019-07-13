@@ -11,6 +11,9 @@ namespace XSQL
     {
         Expression IQueryable.Expression => Expression.Constant(this);
         IQueryProvider IQueryable.Provider => new XSqlProvider(this);
+
+        
+
         public IEnumerator<T> GetEnumerator()
         {
             throw new NotImplementedException();
@@ -206,13 +209,36 @@ namespace XSQL
         {
             throw new NotImplementedException();
         }
+        [System.Diagnostics.DebuggerStepThrough()]
         public Sql()
         {
-           
+            var attr = typeof(T).GetCustomAttributes().FirstOrDefault(p => p is DbTableAttribute) as DbTableAttribute;
+            if (attr != null)
+            {
+                this.table = attr.TableName;
+                this.schema = attr.SchemaName;
+            }
+            else
+            {
+                throw new Exception(string.Format("DbTable was not found in {0}", typeof(T)));
+            }
             base.ElementType = typeof(T);
             base.ParamExpr = Expression.Parameter(base.ElementType);
             base.MapFields = this.ElementType.GetProperties().Select(p=>new MapFieldInfo {
-                Member=p
+                Member=p,
+                Name=p.Name,
+                Schema=this.schema,
+                TableName=this.table
+            }).ToList();
+        }
+        internal Sql(bool IgnoreCheck)
+        {
+            
+            base.ElementType = typeof(T);
+            base.ParamExpr = Expression.Parameter(base.ElementType);
+            base.MapFields = this.ElementType.GetProperties().Select(p => new MapFieldInfo
+            {
+                Member = p
             }).ToList();
         }
         public Sql<T2> Select<T2>(Expression<Func<T, T2>> Expr)

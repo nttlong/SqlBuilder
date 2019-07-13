@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSQLBuilder", "TestSQLBuilder.csproj", "{920B4134-D73E-4D89-AE8A-7E8B1C4CBC1A}"
 EndProject
@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{D517616E-5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPreBuilder", "..\SqlPreBuilder\SqlPreBuilder.csproj", "{D8E682AF-FE8A-46CE-85F1-C90D4929FF14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XSQL", "..\XSQL\XSQL.csproj", "{E26511E2-DCBC-470F-94E5-CE5CE20F44B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XSQL", "..\XSQL\XSQL.csproj", "{E26511E2-DCBC-470F-94E5-CE5CE20F44B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GnolMembership", "..\GnolMembership\GnolMembership.csproj", "{CF48E07E-7232-474C-BA18-5BB91B7C1DAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{E26511E2-DCBC-470F-94E5-CE5CE20F44B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E26511E2-DCBC-470F-94E5-CE5CE20F44B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E26511E2-DCBC-470F-94E5-CE5CE20F44B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF48E07E-7232-474C-BA18-5BB91B7C1DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF48E07E-7232-474C-BA18-5BB91B7C1DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF48E07E-7232-474C-BA18-5BB91B7C1DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF48E07E-7232-474C-BA18-5BB91B7C1DAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D8E682AF-FE8A-46CE-85F1-C90D4929FF14} = {D517616E-59E0-4366-B02D-50AA1B274820}
 		{E26511E2-DCBC-470F-94E5-CE5CE20F44B8} = {D517616E-59E0-4366-B02D-50AA1B274820}
+		{CF48E07E-7232-474C-BA18-5BB91B7C1DAB} = {D517616E-59E0-4366-B02D-50AA1B274820}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4AFD4BD5-362B-4138-B666-296FBC821255}

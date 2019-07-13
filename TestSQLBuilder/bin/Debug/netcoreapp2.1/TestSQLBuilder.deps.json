@@ -8,10 +8,19 @@
     ".NETCoreApp,Version=v2.1": {
       "TestSQLBuilder/1.0.0": {
         "dependencies": {
+          "GnolMembership": "1.0.0",
           "XSQL": "1.0.0"
         },
         "runtime": {
           "TestSQLBuilder.dll": {}
+        }
+      },
+      "GnolMembership/1.0.0": {
+        "dependencies": {
+          "XSQL": "1.0.0"
+        },
+        "runtime": {
+          "GnolMembership.dll": {}
         }
       },
       "XSQL/1.0.0": {
@@ -23,6 +32,11 @@
   },
   "libraries": {
     "TestSQLBuilder/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GnolMembership/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

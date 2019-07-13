@@ -14,7 +14,7 @@ namespace XSQL
         public string AliasName { get; internal set; }
         internal FuncExpr Callee { get; set; }
 
-        [System.Diagnostics.DebuggerStepThrough]
+        //[System.Diagnostics.DebuggerStepThrough]
         public string ToSQLString(string Quotes, string paramPrefix, List<XSqlCommandParam> Params, ISqlCompiler compiler)
         {
             if (this.Value != null)
@@ -31,7 +31,14 @@ namespace XSQL
             }
             else if (Callee != null)
             {
-                return Callee.ToSQLString(Quotes,paramPrefix,Params, compiler);
+                if (Callee.AliasName == null)
+                {
+                    return Callee.ToSQLString(Quotes, paramPrefix, Params, compiler);
+                }
+                else
+                {
+                    return Callee.ToSQLString(Quotes, paramPrefix, Params, compiler)+" "+string.Format(string.Format("{0}{{0}}{1}",Quotes[0],Quotes[1]),this.AliasName);
+                }
             }
             return "Unknown";
         }

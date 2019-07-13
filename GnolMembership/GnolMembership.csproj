@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XSQL\XSQL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="XSQL\" />
+  </ItemGroup>
+
+</Project>

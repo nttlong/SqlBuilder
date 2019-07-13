@@ -10,6 +10,8 @@ namespace XSQL
     public class BaseSql
     {
         public List<TreeExpr> SelectedFields { get; set; }
+        public List<TreeExpr> GroupByFields { get; set; }
+        public List<TreeExpr> HavingFields { get; set; }
         public bool IsSubQuery { get; set; }
         public Type ElementType { get;  set; }
 
@@ -51,7 +53,7 @@ namespace XSQL
         }
         internal static Sql<T2> Clone<T2>(BaseSql sql)
         {
-            var ret = new Sql<T2>();
+            var ret = new Sql<T2>(true);
             ret.MapFields = sql.MapFields.ToList();
             ret.ParamExpr = sql.ParamExpr;
             ret.schema = sql.schema;
@@ -75,6 +77,14 @@ namespace XSQL
             if (sql.filter != null)
             {
                 ret.filter = sql.filter.Clone();
+            }
+            if (sql.GroupByFields != null)
+            {
+                ret.GroupByFields = sql.GroupByFields.Select(p => p.Clone()).ToList();
+            }
+            if (sql.HavingFields != null)
+            {
+                ret.HavingFields = sql.HavingFields.Select(p => p.Clone()).ToList();
             }
             ret.IsSubQuery = sql.IsSubQuery || sql.filter != null || sql.source != null;
             return ret;
@@ -143,31 +153,32 @@ namespace XSQL
         }
 
         
-        [System.Diagnostics.DebuggerStepThrough]
+        //[System.Diagnostics.DebuggerStepThrough]
         public string ToSQLString(string Quotes, string paramPrefix, List<XSqlCommandParam> Params, ISqlCompiler compiler)
         {
+            var ret = "";
             if (this.source == null)
             {
                 if (SelectedFields == null || this.SelectedFields.Count == 0)
                 {
                     if (this.filter == null)
                     {
-                        return "select * From " + this.GetFromClause(Quotes, paramPrefix, Params, compiler);
+                        ret= "select * From " + this.GetFromClause(Quotes, paramPrefix, Params, compiler);
                     }
                     else
                     {
-                        return "select * From " + this.GetFromClause(Quotes, paramPrefix, Params, compiler) + " where " + this.filter.ToSQLString(Quotes, paramPrefix, Params, compiler);
+                        ret= "select * From " + this.GetFromClause(Quotes, paramPrefix, Params, compiler) + " where " + this.filter.ToSQLString(Quotes, paramPrefix, Params, compiler);
                     }
                 }
                 else
                 {
                     if (this.filter == null)
                     {
-                        return "select " + string.Join(",", SelectedFields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler))) + " From " + this.GetFromClause(Quotes, paramPrefix, Params, compiler);
+                        ret= "select " + string.Join(",", SelectedFields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler))) + " From " + this.GetFromClause(Quotes, paramPrefix, Params, compiler);
                     }
                     else
                     {
-                        return "select " + string.Join(",", SelectedFields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler))) + " From " + this.GetFromClause(Quotes, paramPrefix, Params, compiler) + " where " + this.filter.ToSQLString(Quotes, paramPrefix, Params, compiler);
+                        ret= "select " + string.Join(",", SelectedFields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler))) + " From " + this.GetFromClause(Quotes, paramPrefix, Params, compiler) + " where " + this.filter.ToSQLString(Quotes, paramPrefix, Params, compiler);
                     }
                 }
             }
@@ -177,24 +188,32 @@ namespace XSQL
                 {
                     if (this.filter == null)
                     {
-                        return "select * From " + this.source.ToSQLString(Quotes, paramPrefix, Params, compiler);
+                        ret= "select * From " + this.source.ToSQLString(Quotes, paramPrefix, Params, compiler);
                     }
                     else
                     {
-                        return "select * From " + this.source.ToSQLString(Quotes, paramPrefix, Params, compiler) + " where " + this.filter.ToSQLString(Quotes, paramPrefix, Params, compiler);
+                        ret= "select * From " + this.source.ToSQLString(Quotes, paramPrefix, Params, compiler) + " where " + this.filter.ToSQLString(Quotes, paramPrefix, Params, compiler);
                     }
                 }
                 else
                 {
                     if (this.filter == null)
                     {
-                        return "select "+string.Join(",", SelectedFields.Select(p=>p.ToSQLString(Quotes, paramPrefix, Params, compiler)) )+ " From " + this.source.ToSQLString(Quotes, paramPrefix, Params, compiler);
+                        ret= "select " +string.Join(",", SelectedFields.Select(p=>p.ToSQLString(Quotes, paramPrefix, Params, compiler)) )+ " From " + this.source.ToSQLString(Quotes, paramPrefix, Params, compiler);
                     }
                     else
                     {
-                        return "select " + string.Join(",", SelectedFields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler))) + " From " + this.source.ToSQLString(Quotes, paramPrefix, Params, compiler) + " where " + this.filter.ToSQLString(Quotes, paramPrefix, Params, compiler);
+                        ret= "select " + string.Join(",", SelectedFields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler))) + " From " + this.source.ToSQLString(Quotes, paramPrefix, Params, compiler) + " where " + this.filter.ToSQLString(Quotes, paramPrefix, Params, compiler);
                     }
                 }
+            }
+            if (this.GroupByFields != null)
+            {
+                ret += " Group By " + string.Join(",", this.GroupByFields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler)));
+            }
+            if (ret != "")
+            {
+                return ret;
             }
             throw new NotImplementedException();
         }

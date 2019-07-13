@@ -1,0 +1,12 @@
+C:\code\DotNet\SqlBuilder\GnolMembership\bin\Debug\netcoreapp2.1\GnolMembership.deps.json
+C:\code\DotNet\SqlBuilder\GnolMembership\bin\Debug\netcoreapp2.1\GnolMembership.dll
+C:\code\DotNet\SqlBuilder\GnolMembership\bin\Debug\netcoreapp2.1\GnolMembership.pdb
+C:\code\DotNet\SqlBuilder\GnolMembership\bin\Debug\netcoreapp2.1\XSQL.dll
+C:\code\DotNet\SqlBuilder\GnolMembership\bin\Debug\netcoreapp2.1\XSQL.pdb
+C:\code\DotNet\SqlBuilder\GnolMembership\obj\Debug\netcoreapp2.1\GnolMembership.csprojAssemblyReference.cache
+C:\code\DotNet\SqlBuilder\GnolMembership\obj\Debug\netcoreapp2.1\GnolMembership.csproj.CoreCompileInputs.cache
+C:\code\DotNet\SqlBuilder\GnolMembership\obj\Debug\netcoreapp2.1\GnolMembership.AssemblyInfoInputs.cache
+C:\code\DotNet\SqlBuilder\GnolMembership\obj\Debug\netcoreapp2.1\GnolMembership.AssemblyInfo.cs
+C:\code\DotNet\SqlBuilder\GnolMembership\obj\Debug\netcoreapp2.1\GnolMembership.csproj.CopyComplete
+C:\code\DotNet\SqlBuilder\GnolMembership\obj\Debug\netcoreapp2.1\GnolMembership.dll
+C:\code\DotNet\SqlBuilder\GnolMembership\obj\Debug\netcoreapp2.1\GnolMembership.pdb

@@ -46,7 +46,7 @@ namespace XSQL
         public string TableName { get; set; }
         
         public string AliasName { get;  set; }
-        [System.Diagnostics.DebuggerStepThrough]
+        //[System.Diagnostics.DebuggerStepThrough]
         public string ToSQLString(string Quotes, string paramPrefix)
         {
             var ret = "";

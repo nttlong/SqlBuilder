@@ -23,7 +23,8 @@ namespace XSQL
 
         public string Compile(FuncExpr funcExpr, List<XSqlCommandParam> Params)
         {
-            if (funcExpr.Name == "Concat")
+            if (funcExpr.Name == "Concat"||
+                funcExpr.Name == "Count")
             {
                 var ret= funcExpr.Name + "(" + string.Join(",", funcExpr.Arguments.Select(p => p.ToSQLString(this.GetBrackets(), this.GetParamPrefix(), Params, this)))+")";
                 if (funcExpr.AliasName != null)
@@ -60,9 +61,14 @@ namespace XSQL
                     {
                         return ret + " " + string.Format("{0}.{{0}}.{1}", this.GetBrackets()[0], this.GetBrackets()[1]);
                     }
+                    else
+                    {
+                        return ret;
+                    }
                 }
                 
             }
+            
             throw new NotImplementedException();
         }
 
