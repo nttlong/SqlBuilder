@@ -6,13 +6,13 @@ namespace XSQL
 {
     public class ValueExpr
     {
-        public Type Type { get;  set; }
-        public object Val { get;  set; }
-        public string AliasName { get;  set; }
+        public Type Type { get; set; }
+        public object Val { get; set; }
+        public string AliasName { get; set; }
 
         public override string ToString()
         {
-            return ToSQLString("[]","@",null);
+            return ToSQLString("[]", "@", null);
         }
         public string ToSQLString(string Quotes, string paramPrefix, List<XSqlCommandParam> Params)
         {
@@ -27,26 +27,32 @@ namespace XSQL
             }
             else
             {
-                var ParamName = string.Format("{0}{1}",  paramPrefix, "p" + Params.Count);
+                var ParamName = string.Format("{0}{1}", paramPrefix, "p" + Params.Count);
                 Params.Add(new XSqlCommandParam()
                 {
-                    DataType=this.Type,
-                    Value=this.Val,
-                    Name=ParamName
+                    DataType = this.Type,
+                    Value = this.Val,
+                    Name = ParamName
                 });
                 var ret = ParamName;
                 return ret;
             }
         }
 
-        internal ValueExpr Clone()
+        public ValueExpr Clone()
         {
             return new ValueExpr
             {
-                Type=this.Type,
-                Val=this.Val,
-                AliasName=this.AliasName
+                Type = this.Type,
+                Val = this.Val,
+                AliasName = this.AliasName
             };
+        }
+
+        public ValueExpr ClearAliasName()
+        {
+            this.AliasName = null;
+            return this;
         }
     }
 }

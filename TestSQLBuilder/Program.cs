@@ -16,8 +16,14 @@ namespace TestSQLBuilder
             var sql1 = from x in qr
                        where x.Username == "admin"
                        group x by x.Username into g
-                       select SqlFn.Count<int>(g.First().Username);
-           Console.WriteLine(sql1);
+                       select g;
+            var sql3 = from x in sql1
+                       join y in qr
+                       on x.First().Username equals y.Username
+                       select new {
+                           FX=SqlFn.Concat( x.First().Username,"123")
+                       };
+           Console.WriteLine(sql3);
             //var fx = ExprParse.Parse("(fx(sum(1,1)))");
             //Func<string> f1 = () =>
             // {

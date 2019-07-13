@@ -64,7 +64,8 @@ namespace XSQL
                             Name = expr.Method.Name,
                             Arguments = tmpArgs,
                             AliasName = (mB != null) ? mB.Name:null
-                        }
+                        },
+                        AliasName=(mB!=null)?mB.Name:null
                         
                     };
                 }
@@ -208,7 +209,7 @@ namespace XSQL
 
         public static IQueryable<T> DoInnerJoin<T>(BaseSql qr1, BaseSql qr2, MemberExpression leftKey, MemberExpression rightKey, Expression selector)
         {
-            var ret = new Sql<T>();
+            var ret = new Sql<T>(true);
             var leftName = "l" + ret.AliasCount + "" + qr1.AliasCount + "" + qr2.AliasCount;
             var rightName = "r" + ret.AliasCount + "" + qr1.AliasCount + "" + qr2.AliasCount;
             if (!(qr1.IsSubQuery) && (!qr2.IsSubQuery))
@@ -254,6 +255,63 @@ namespace XSQL
                     }
                 };
                 return ret as IQueryable<T>;
+            }
+            if ((qr1.IsSubQuery) && (!qr2.IsSubQuery))
+            {
+                var sql1 =  new BaseSql();
+                var leftMp = qr1.MapFields.FirstOrDefault(p => p.Member == leftKey.Member);
+                var rightMp = qr2.MapFields.FirstOrDefault(p => p.Member == rightKey.Member);
+                ret.source = new ExprDataSource
+                {
+                    JoinType = "inner",
+                    LeftSource = new ExprDataSource
+                    {
+                        Source=new ExprDataSource
+                        {
+                            Alias=qr1.Alias,
+                            Fields=(qr1.SelectedFields!=null)?qr1.SelectedFields.Select(p=> p.Clone()).ToList():null,
+                            filter=(qr1.filter!=null)?qr1.filter.Clone():null,
+                            GroupFields= (qr1.GroupByFields != null)?qr1.GroupByFields.Select(p=>p.Clone()).ToList():null,
+                            HavingFields=(qr1.HavingFields!=null)?qr1.HavingFields.Select(p=>p.Clone()).ToList():null,
+                            Schema=qr1.schema,
+                            Table=qr1.table,
+                            JoinExpr=(qr1.source!=null)?qr1.source.JoinExpr:null,
+                            JoinType = (qr1.source != null) ? qr1.source.JoinType : null,
+                            LeftSource = (qr1.source != null) ? qr1.source.LeftSource : null,
+                            RightSource = (qr1.source != null) ? qr1.source.RightSource : null,
+                            ParamExpr=qr1.ParamExpr
+                        }
+                    },
+                    RightSource = new ExprDataSource
+                    {
+                        Alias = rightName,
+                        Schema = qr2.schema,
+                        Table = qr2.table
+                    },
+                    JoinExpr = new TreeExpr
+                    {
+                        Op = ExprCompiler.GetOp(ExpressionType.Equal),
+                        Left = new TreeExpr
+                        {
+                            Field = new FieldExpr
+                            {
+                                TableName = leftName,
+                                Name = leftMp.Name
+                            }
+                        },
+                        Right = new TreeExpr
+                        {
+                            Field = new FieldExpr
+                            {
+                                TableName = rightName,
+                                Name = rightMp.Name
+                            }
+                        }
+
+                    }
+                };
+                return ret as IQueryable<T>;
+
             }
             throw new NotSupportedException();
         }
@@ -596,6 +654,24 @@ namespace XSQL
                 {
                     return DoSelectByMMemberInitExpression<T>(qr, (MemberInitExpression)selector);
                 }
+                else if(selector is ParameterExpression)
+                {
+                    return DoSelectByParameterExpression<T>(qr, (ParameterExpression)selector);
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            throw new NotImplementedException();
+        }
+
+        public static IQueryable<T> DoSelectByParameterExpression<T>(BaseSql qr, ParameterExpression selector)
+        {
+            var ret = BaseSql.Clone<T>(qr);
+            if (selector.Type == typeof(T))
+            {
+                return ret;    
             }
             throw new NotImplementedException();
         }
@@ -632,6 +708,13 @@ namespace XSQL
                         }
                     });
                     return ret as IQueryable<T>;
+                }
+            }
+            else if(expr.Method.DeclaringType == typeof(Enumerable))
+            {
+                if (expr.Method.Name == "First")
+                {
+
                 }
             }
             throw new NotImplementedException();

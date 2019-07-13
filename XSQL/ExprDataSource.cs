@@ -21,7 +21,8 @@ namespace XSQL
         public TreeExpr JoinExpr { get;  set; }
         public ParameterExpression ParamExpr { get;  set; }
         public string JoinType { get;  set; }
-
+        public List<TreeExpr> GroupFields { get;  set; }
+        public List<TreeExpr> HavingFields { get; set; }
         public string ToSQLString(string Quotes, string paramPrefix, List<XSqlCommandParam> Params, ISqlCompiler compiler)
         {
             var ret = "";

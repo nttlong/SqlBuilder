@@ -111,6 +111,10 @@ namespace XSQL
                 this.Left.ClearAliasName();
                 this.Right.ClearAliasName();
             }
+            if (this.Value != null)
+            {
+                this.Value.ClearAliasName();
+            }
             return this;
         }
     }
