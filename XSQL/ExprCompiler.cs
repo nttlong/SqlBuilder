@@ -310,6 +310,18 @@ namespace XSQL
 
                     }
                 };
+                if(ret.source.LeftSource.Fields==null ||
+                    ret.source.Fields.Count == 0)
+                {
+                    ret.source.Fields = new List<TreeExpr>();
+                    ret.source.Fields.Add(new TreeExpr
+                    {
+                       Field=new FieldExpr
+                       {
+                          TableName=qr1.table 
+                       } 
+                    });
+                }
                 return ret as IQueryable<T>;
 
             }

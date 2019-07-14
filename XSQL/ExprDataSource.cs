@@ -30,33 +30,33 @@ namespace XSQL
             {
                 if(this.JoinExpr == null)
                 {
-                    return string.Join(",", new string[] { this.LeftSource.ToSQLString(Quotes, paramPrefix, Params, compiler), this.RightSource.ToSQLString(Quotes, paramPrefix, Params, compiler) });
+                    ret= string.Join(",", new string[] { this.LeftSource.ToSQLString(Quotes, paramPrefix, Params, compiler), this.RightSource.ToSQLString(Quotes, paramPrefix, Params, compiler) });
                 }
                 else
                 {
-                    return this.LeftSource.ToSQLString(Quotes, paramPrefix, Params, compiler) + " " + this.JoinType + " join " + this.RightSource.ToSQLString(Quotes, paramPrefix, Params, compiler) + " on " + this.JoinExpr.ToSQLString(Quotes, paramPrefix, Params, compiler);
+                    ret= this.LeftSource.ToSQLString(Quotes, paramPrefix, Params, compiler) + " " + this.JoinType + " join " + this.RightSource.ToSQLString(Quotes, paramPrefix, Params, compiler) + " on " + this.JoinExpr.ToSQLString(Quotes, paramPrefix, Params, compiler);
                 }
             }
             if (Source != null)
             {
                 if (Fields != null)
                 {
-                    ret = "(" + string.Join(",", Fields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler))) + " from " + Source.ToSQLString(Quotes, paramPrefix, Params, compiler) +
-                        ") ";
+                    ret = string.Join(",", Fields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler))) + " from " + Source.ToSQLString(Quotes, paramPrefix, Params, compiler);
+                        ;
                 }
                 else
                 {
                     ret = Source.ToSQLString(Quotes, paramPrefix, Params, compiler);
                 }
-                return ret;
+                
             }
             else if(Schema !=null)
             {
                 if (Fields != null)
                 {
-                    ret = "(" + string.Join(",", Fields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler))) + " from " +
-                        string.Format(string.Format("{0}{{0}}{1}.{0}{{1}}{1}", Quotes[0], Quotes[1]), Schema, Table) +
-                        ") ";
+                    ret = string.Join(",", Fields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler))) + " from " +
+                        string.Format(string.Format("{0}{{0}}{1}.{0}{{1}}{1}", Quotes[0], Quotes[1]), Schema, Table);
+                        ;
                 }
                 else
                 {
@@ -82,8 +82,14 @@ namespace XSQL
             {
                 ret += " where " + this.filter.ToSQLString(Quotes, paramPrefix, Params, compiler);
             }
-            ret = "("+ret+") "+ string.Format(string.Format("{0}{{0}}{1}", Quotes[0], Quotes[1]), Alias);
-            return ret;
+            ret = ret+ string.Format(string.Format("{0}{{0}}{1}", Quotes[0], Quotes[1]), Alias);
+            if (this.Fields != null)
+            {
+                ret = "Select " + string.Join(",", this.Fields.Select(p => p.ToSQLString(Quotes, paramPrefix, Params, compiler))) + " " +
+                    ret;
+
+            }
+            return "("+ret+")";
         }
 
         internal ExprDataSource Clone()

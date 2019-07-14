@@ -58,7 +58,6 @@ namespace XSQL
                 var ret = new Sql<T2>();
                 
                 ret.MapFields = new List<MapFieldInfo>();
-
                 this.AliasCount++;
                 sql.AliasCount++;
                 ret.AliasCount++;
