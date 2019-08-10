@@ -694,11 +694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\code\\DotNet\\SqlBuilder\\SqlPreBuilder\\SqlPreBuilder.csproj",
+      "projectUniqueName": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\SqlPreBuilder\\SqlPreBuilder.csproj",
       "projectName": "SqlPreBuilder",
-      "projectPath": "C:\\code\\DotNet\\SqlBuilder\\SqlPreBuilder\\SqlPreBuilder.csproj",
+      "projectPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\SqlPreBuilder\\SqlPreBuilder.csproj",
       "packagesPath": "C:\\Users\\Win10\\.nuget\\packages\\",
-      "outputPath": "C:\\code\\DotNet\\SqlBuilder\\SqlPreBuilder\\obj\\",
+      "outputPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\SqlPreBuilder\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

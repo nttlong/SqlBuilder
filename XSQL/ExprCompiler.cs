@@ -194,15 +194,22 @@ namespace XSQL
             else
             {
                 var mp = sql.MapFields.FirstOrDefault(p => p.ParamExpr == expr);
-
-                return new TreeExpr
+                if (mp != null)
                 {
-                    Field = new FieldExpr
+                    return new TreeExpr
                     {
-                        TableName = mp.TableName,
-                        Schema = mp.Schema
-                    }
-                };
+                        Field = new FieldExpr
+                        {
+                            TableName = mp.TableName,
+                            Schema = mp.Schema
+                        }
+                    };
+                }
+                if (expr.Type.Name.IndexOf("IGrouping") > -1)
+                {
+                    
+                }
+                
             }
             throw new NotImplementedException();
         }
@@ -1048,7 +1055,7 @@ namespace XSQL
            
             return ret;
         }
-        public static ParameterExpression GetParamFfromMember(MemberExpression expr)
+        public static ParameterExpression GetParamFromMember(MemberExpression expr)
         {
             var ret = expr.Expression;
             if (ret is ParameterExpression)
@@ -1057,13 +1064,13 @@ namespace XSQL
             }
             else if (ret is MemberExpression)
             {
-                return GetParamFfromMember((MemberExpression)ret);
+                return GetParamFromMember((MemberExpression)ret);
             }
             return null;
         }
         public static TreeExpr CompileMember(BaseSql sql, MemberExpression expr, MemberInfo mB)
         {
-            ParameterExpression P = GetParamFfromMember(expr);
+            ParameterExpression P = GetParamFromMember(expr);
             var mb = sql.MapFields.Where(p => p.ParamExpr != null).FirstOrDefault(p => p.ParamExpr == P && p.Member == expr.Member);
             if (mb == null)
             {

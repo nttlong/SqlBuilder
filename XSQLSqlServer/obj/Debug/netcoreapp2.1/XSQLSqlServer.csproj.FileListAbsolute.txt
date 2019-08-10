@@ -1,0 +1,12 @@
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\bin\Debug\netcoreapp2.1\XSQLSqlServer.deps.json
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\bin\Debug\netcoreapp2.1\XSQLSqlServer.dll
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\bin\Debug\netcoreapp2.1\XSQLSqlServer.pdb
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.1\XSQLSqlServer.csprojAssemblyReference.cache
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.1\XSQLSqlServer.csproj.CoreCompileInputs.cache
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.1\XSQLSqlServer.AssemblyInfoInputs.cache
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.1\XSQLSqlServer.AssemblyInfo.cs
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.1\XSQLSqlServer.dll
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.1\XSQLSqlServer.pdb
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\bin\Debug\netcoreapp2.1\XSQL.dll
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\bin\Debug\netcoreapp2.1\XSQL.pdb
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.1\XSQLSqlServer.csproj.CopyComplete

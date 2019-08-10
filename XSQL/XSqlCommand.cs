@@ -4,7 +4,7 @@ namespace XSQL
 {
     public class XSqlCommand
     {
-        public string CommandText { get; internal set; }
-        internal List<XSqlCommandParam> Params { get; set; }
+        public string CommandText { get;  set; }
+        public List<XSqlCommandParam> Params { get; set; }
     }
 }

@@ -9,6 +9,8 @@ namespace XSQL
 {
     public class Sql<T>:BaseSql, IQueryable<T>, IOrderedQueryable<T>
     {
+        
+
         Expression IQueryable.Expression => Expression.Constant(this);
         IQueryProvider IQueryable.Provider => new XSqlProvider(this);
 
@@ -250,16 +252,68 @@ namespace XSQL
                     ret.MapFields = new List<MapFieldInfo>();
                 }
                 ret.MapFields.AddRange(this.MapFields.Select(p=>p.Clone()));
-                ret.SelectedFields = ExprCompiler.GetSelectedFieldsFromNewExpression(ret, (NewExpression)Expr.Body);
                 var nx = Expr.Body as NewExpression;
+                foreach(var mbx in nx.Members)
+                {
+                    var arg = nx.Arguments[nx.Members.IndexOf(mbx)];
+                    MapFieldInfo mp = null;
+                    if(arg is MemberExpression)
+                    {
+                        mp = ret.MapFields.FirstOrDefault(p => p.Member == mbx && p.ParamExpr == Expr.Parameters[0]);
+                        if (mp == null)
+                        {
+                            mp = ret.MapFields.FirstOrDefault(p => p.Member == mbx && p.ParamExpr.Type == Expr.Parameters[0].Type);
+                        }
+                        if (mp == null)
+                        {
+                            mp = ret.MapFields.FirstOrDefault(p => p.Name == mbx.Name && p.ParamExpr == Expr.Parameters[0]);
+                        }
+                        if (mp == null)
+                        {
+                            mp = ret.MapFields.FirstOrDefault(p => p.Name == mbx.Name && p.ParamExpr.Type == Expr.Parameters[0].Type);
+                        }
+                        if (mp != null)
+                        {
+                            mp.Member = mbx as PropertyInfo;
+                            mp.ParamExpr = Expr.Parameters[0];
+                        }
+                        else
+                        {
+                            ret.MapFields.Add(new MapFieldInfo
+                            {
+                                AliasName = mbx.Name,
+                                Member = mbx as PropertyInfo,
+                                ParamExpr = Expr.Parameters[0],
+                                Name = ((MemberExpression)arg).Member.Name
+                            });
+                        }
+                    }
+                    else
+                    {
+                        ret.MapFields.Add(new MapFieldInfo
+                        {
+                            AliasName = mbx.Name,
+                            Member = mbx as PropertyInfo,
+                            ParamExpr = Expr.Parameters[0],
+                            Name = mbx.Name
+                        });
+                    }
+
+
+                }
+                
+                ret.SelectedFields = ExprCompiler.GetSelectedFieldsFromNewExpression(ret, (NewExpression)Expr.Body);
+              
+                var tempMapping = new List<MapFieldInfo>();
+
                 nx.Members.ToList().ForEach(p =>
                 {
                     var mp = ret.MapFields.FirstOrDefault(x => x.Member == p);
-                    ret.MapFields.Add(new MapFieldInfo()
+                    tempMapping.Add(new MapFieldInfo()
                     {
                         Alias=(mp!=null)?mp.Alias:null,
                         AliasName = (mp != null) ? mp.AliasName : null,
-                        ExprField = (mp != null) ? mp.ExprField.Clone() : null,
+                        ExprField = (mp != null && mp.ExprField!=null) ? mp.ExprField.Clone() : null,
                         Member=p as PropertyInfo,
                         Name=p.Name,
                         ParamExpr=Expr.Parameters[0],
@@ -267,6 +321,7 @@ namespace XSQL
                         TableName=this.table
                     });
                 });
+                ret.MapFields = tempMapping;
                 ret.SelectedFields.ForEach(p => {
                     if (p.Field != null)
                     {
@@ -344,6 +399,10 @@ namespace XSQL
                 var mp = ret.MapFields.FirstOrDefault(p => (p.ParamExpr != null) && p.ParamExpr.Type == px.Type);
                 if (mp != null)
                 {
+                    if (ret.SelectedFields == null)
+                    {
+                        ret.SelectedFields = new List<TreeExpr>();
+                    }
                     ret.SelectedFields.Add(new TreeExpr()
                     {
                         Field=new FieldExpr
@@ -421,17 +480,21 @@ namespace XSQL
                 return ret;
             }
         }
+       
         public Sql(string schema, string table)
         {
-            base.schema = schema;
-            base.table = table;
-            base.ElementType = typeof(T);
-            base.ParamExpr = Expression.Parameter(base.ElementType);
-            base.MapFields = this.ElementType.GetProperties().Select(p => new MapFieldInfo
-            {
-                Member = p
-            }).ToList();
+            base.Init(typeof(T), schema, table);
         }
-        
+
+        public Sql(string Schema)
+        {
+            var attr = typeof(T).GetCustomAttributes().FirstOrDefault(p => p is DbTableAttribute) as DbTableAttribute;
+            if (attr != null)
+            {
+                this.table = attr.TableName;
+                this.schema = Schema;
+            }
+            base.Init(typeof(T), this.schema, this.table);
+        }
     }
 }

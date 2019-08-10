@@ -16,3 +16,11 @@ C:\code\DotNet\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.AssemblyInfo.cs
 C:\code\DotNet\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.dll
 C:\code\DotNet\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.pdb
 C:\code\DotNet\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.csprojAssemblyReference.cache
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQL\bin\Debug\netcoreapp2.1\XSQL.deps.json
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQL\bin\Debug\netcoreapp2.1\XSQL.dll
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQL\bin\Debug\netcoreapp2.1\XSQL.pdb
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.csproj.CoreCompileInputs.cache
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.AssemblyInfoInputs.cache
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.AssemblyInfo.cs
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.dll
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQL\obj\Debug\netcoreapp2.1\XSQL.pdb

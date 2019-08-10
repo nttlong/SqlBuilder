@@ -230,6 +230,19 @@
         "runtime": {
           "bin/placeholder/XSQL.dll": {}
         }
+      },
+      "XSQLSqlServer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "XSQL": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/XSQLSqlServer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/XSQLSqlServer.dll": {}
+        }
       }
     }
   },
@@ -713,13 +726,19 @@
       "type": "project",
       "path": "../XSQL/XSQL.csproj",
       "msbuildProject": "../XSQL/XSQL.csproj"
+    },
+    "XSQLSqlServer/1.0.0": {
+      "type": "project",
+      "path": "../XSQLSqlServer/XSQLSqlServer.csproj",
+      "msbuildProject": "../XSQLSqlServer/XSQLSqlServer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "GnolMembership >= 1.0.0",
       "Microsoft.NETCore.App >= 2.1.0",
-      "XSQL >= 1.0.0"
+      "XSQL >= 1.0.0",
+      "XSQLSqlServer >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -729,11 +748,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\code\\DotNet\\SqlBuilder\\TestSQLBuilder\\TestSQLBuilder.csproj",
+      "projectUniqueName": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\TestSQLBuilder\\TestSQLBuilder.csproj",
       "projectName": "TestSQLBuilder",
-      "projectPath": "C:\\code\\DotNet\\SqlBuilder\\TestSQLBuilder\\TestSQLBuilder.csproj",
+      "projectPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\TestSQLBuilder\\TestSQLBuilder.csproj",
       "packagesPath": "C:\\Users\\Win10\\.nuget\\packages\\",
-      "outputPath": "C:\\code\\DotNet\\SqlBuilder\\TestSQLBuilder\\obj\\",
+      "outputPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\TestSQLBuilder\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -752,11 +771,14 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\GnolMembership.csproj": {
-              "projectPath": "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\GnolMembership.csproj"
+            "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\GnolMembership\\GnolMembership.csproj": {
+              "projectPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\GnolMembership\\GnolMembership.csproj"
             },
-            "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj": {
-              "projectPath": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj"
+            "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\XSQLSqlServer\\XSQLSqlServer.csproj": {
+              "projectPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\XSQLSqlServer\\XSQLSqlServer.csproj"
+            },
+            "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\XSQL\\XSQL.csproj": {
+              "projectPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\XSQL\\XSQL.csproj"
             }
           }
         }
@@ -771,6 +793,7 @@
       "netcoreapp2.1": {
         "dependencies": {
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true

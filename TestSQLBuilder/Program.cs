@@ -12,18 +12,32 @@ namespace TestSQLBuilder
         
         static void Main(string[] args)
         {
-            var qr = new XSQL.Sql<GnolMembership.Models.SysUsers>();
+            var cmp=XSQL.SqlExcutor.GetInstance("XSQLSqlServer", "Excutor");
+            var qr = new XSQL.Sql<GnolMembership.Models.SysUsers>("x");
             var sql1 = from x in qr
-                       where x.Username == "admin"
-                       group x by x.Username into g
-                       select g;
-            var sql3 = from x in sql1
-                       join y in qr
-                       on x.First().Username equals y.Username
-                       select new {
-                           FX=SqlFn.Concat( x.First().Username,"123")
+                       //where x.Username == "admin"
+                       select x;
+                       //group x by x.Username into g
+                       //select XSQL.SqlFn.Count(g);
+            
+            var sql2 = from x in sql1
+                       select new
+                       {
+                           v=x.Username+"/"+x.Password,
+                           x.Password
                        };
-           Console.WriteLine(sql3);
+            var sql3 = from x in sql2
+                       where x.v != null
+                       select x;
+            var fx = cmp.GetCommand(sql3);
+            //var sql3 = from x in sql1
+            //           join y in qr
+            //           on x.First().Username equals y.Username
+            //           select new {
+            //               FX=SqlFn.Concat( x.First().Username,"123")
+            //           };
+
+            Console.WriteLine(fx.ToString());
             //var fx = ExprParse.Parse("(fx(sum(1,1)))");
             //Func<string> f1 = () =>
             // {

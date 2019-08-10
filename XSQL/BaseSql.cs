@@ -242,6 +242,20 @@ namespace XSQL
             return this.ToSQLString("[]", "@", null, null);
         }
 
-
+        internal void Init(Type ElementType,string schema, string table)
+        {
+            this.schema = schema;
+            this.table = table;
+            this.ElementType = ElementType;
+            this.ParamExpr = Expression.Parameter(ElementType);
+            this.MapFields = this.ElementType.GetProperties().Select(p => new MapFieldInfo
+            {
+                Member = p,
+                Schema = this.schema,
+                TableName = this.table,
+                Name = p.Name,
+                ParamExpr=Expression.Parameter(ElementType)
+            }).ToList();
+        }
     }
 }

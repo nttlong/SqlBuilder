@@ -22,5 +22,9 @@ namespace XSQL
         {
             throw new NotImplementedException();
         }
+        public static int Count(object FieldName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

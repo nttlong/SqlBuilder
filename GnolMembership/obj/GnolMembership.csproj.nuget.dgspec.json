@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\GnolMembership.csproj": {}
+    "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\GnolMembership\\GnolMembership.csproj": {}
   },
   "projects": {
-    "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\GnolMembership.csproj": {
+    "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\GnolMembership\\GnolMembership.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\GnolMembership.csproj",
+        "projectUniqueName": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\GnolMembership\\GnolMembership.csproj",
         "projectName": "GnolMembership",
-        "projectPath": "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\GnolMembership.csproj",
+        "projectPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\GnolMembership\\GnolMembership.csproj",
         "packagesPath": "C:\\Users\\Win10\\.nuget\\packages\\",
-        "outputPath": "C:\\code\\DotNet\\SqlBuilder\\GnolMembership\\obj\\",
+        "outputPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\GnolMembership\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj": {
-                "projectPath": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj"
+              "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\XSQL\\XSQL.csproj": {
+                "projectPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\XSQL\\XSQL.csproj"
               }
             }
           }
@@ -60,14 +60,14 @@
         }
       }
     },
-    "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj": {
+    "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\XSQL\\XSQL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj",
+        "projectUniqueName": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\XSQL\\XSQL.csproj",
         "projectName": "XSQL",
-        "projectPath": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\XSQL.csproj",
+        "projectPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\XSQL\\XSQL.csproj",
         "packagesPath": "C:\\Users\\Win10\\.nuget\\packages\\",
-        "outputPath": "C:\\code\\DotNet\\SqlBuilder\\XSQL\\obj\\",
+        "outputPath": "C:\\Users\\Win10\\Source\\Repos\\SqlBuilder\\XSQL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

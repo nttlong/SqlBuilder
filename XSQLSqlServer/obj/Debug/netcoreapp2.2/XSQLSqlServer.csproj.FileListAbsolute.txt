@@ -1,0 +1,9 @@
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\bin\Debug\netcoreapp2.2\XSQLSqlServer.deps.json
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\bin\Debug\netcoreapp2.2\XSQLSqlServer.dll
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\bin\Debug\netcoreapp2.2\XSQLSqlServer.pdb
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.2\XSQLSqlServer.csproj.CoreCompileInputs.cache
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.2\XSQLSqlServer.AssemblyInfoInputs.cache
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.2\XSQLSqlServer.AssemblyInfo.cs
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.2\XSQLSqlServer.dll
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.2\XSQLSqlServer.pdb
+C:\Users\Win10\Source\Repos\SqlBuilder\XSQLSqlServer\obj\Debug\netcoreapp2.2\XSQLSqlServer.csprojAssemblyReference.cache

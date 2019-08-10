@@ -9,7 +9,8 @@
       "TestSQLBuilder/1.0.0": {
         "dependencies": {
           "GnolMembership": "1.0.0",
-          "XSQL": "1.0.0"
+          "XSQL": "1.0.0",
+          "XSQLSqlServer": "1.0.0"
         },
         "runtime": {
           "TestSQLBuilder.dll": {}
@@ -27,6 +28,14 @@
         "runtime": {
           "XSQL.dll": {}
         }
+      },
+      "XSQLSqlServer/1.0.0": {
+        "dependencies": {
+          "XSQL": "1.0.0"
+        },
+        "runtime": {
+          "XSQLSqlServer.dll": {}
+        }
       }
     }
   },
@@ -42,6 +51,11 @@
       "sha512": ""
     },
     "XSQL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "XSQLSqlServer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -21,7 +21,8 @@ namespace XSQL
                 Name = this.Name,
                 TableName = this.TableName,
                 Member=this.Member,
-                ExprField=(this.ExprField!=null)?this.ExprField.Clone():null
+                ExprField=(this.ExprField!=null)?this.ExprField.Clone():null,
+                ParamExpr=this.ParamExpr
             };
         }
 
